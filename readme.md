@@ -1,110 +1,189 @@
-<!--START_SECTION:header-->
-<div align="center">
-  <p align="center">
-    <img 
-      alt="DIO Education" 
-      src="https://raw.githubusercontent.com/digitalinnovationone/template-github-trilha/main/.github/assets/logo.webp" 
-      width="100px" 
-    />
-    <h1>Título do Curso ou Projeto</h1>
-  </p>
-</div>
-<!--END_SECTION:header-->
+# Guia Completo: Registro e Autorização de App no Trello com Python
 
-<p align="center">
-  <img src="https://img.shields.io/static/v1?label=DIO&message=Education&color=E94D5F&labelColor=202024" alt="DIO Project" />
-  <a href="NIVEL"><img  src="https://img.shields.io/static/v1?label=Nivel&message=Basico&color=E94D5F&labelColor=202024" alt="Nivel"></a>
+## Descrição do Projeto
 
-</p>
+Este projeto foi desenvolvido como parte de um desafio da DIO, com o objetivo de entender como registrar, autorizar e utilizar um aplicativo no Trello por meio da API, usando Python.
 
-<!--  -->
-<table align="center">
-<thead>
-  <tr>
-    <td>
-        <p align="center">Expert</p>
-        <a href="https://github.com/felipeAguiarCode">
-        <img src="https://avatars0.githubusercontent.com/u/37452836?v=3&s=115" alt="@felipeAguiarCode"><br>
-      </a>
-    </td>
-    <td colspan="3">
-    <p>🎉 10y+ em sistemas comerciais com .NET C# e NODE.JS.
-      <br/>
-     🌟 Desenvolvedor fullstack - Coordenador de educação na DIO
-      <br/>
-    👨‍💻 Foco em front-ends SPA com React, Angular e Vue.js
-    </p>
-      <a 
-      href="https://www.linkedin.com/in/felipe-me/" 
-      align="center">
-           <img 
-            align="center" 
-            alt="Material de Apoio" 
-            src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"
-            >
-        </a>
-        <a href="https://www.instagram.com/felipeaguiar.exe/" target="_blank">
-            <img 
-              align="center" 
-              alt="Instagram" 
-              src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
-            >
-        </a>
-    </td>
-  </tr>
-</thead>
-</table>
-<!--  -->
+A proposta é simular uma integração real entre uma aplicação Python e o Trello, permitindo que o sistema acesse boards, listas e cards de forma automatizada.
 
-<br/>
-<br/>
+## Objetivo
 
-## 💻 Sobre o Projeto
+O objetivo principal deste desafio é aprender o processo de autenticação e autorização no Trello, utilizando:
 
-Vamos construir uma página spa, responsiva, para usar em diversos tipos de micro, pequena e média empresas. Contém as seguintes seções: Header, Navigation, Home, Sobre, Serviços, Depoimentos, Contato e Footer que faz xxx e yyy
+- API Key;
+- Token de acesso;
+- Biblioteca `py-trello`;
+- Arquivo `.env` para proteger credenciais;
+- Python para integração com a API do Trello.
 
-## 📚 Pré-requisitos de Habilidades e Níveis de Conhecimento
+## Tecnologias Utilizadas
 
-Antes de ingressar neste conteúdo, é necessário possuir conhecimento prévio nas seguintes áreas:
+- Python
+- Trello API
+- py-trello
+- python-dotenv
+- Google ADK
+- Git e GitHub
 
-- [habilidades ou conhecimentos prévios necessários] | [Básico, Intermediário, Avançado ou Especialista]
+## Etapas Realizadas
 
-- _Exemplo_:
+### 1. Criação do Power-Up no Trello
 
-  - Java | Básico
-  - Gerenciamento de pacotes | Básico
-  -
+Primeiro, acessei o portal de Power-Ups do Trello:
 
-- [Outros pré-requisitos, se aplicável]
+```text
+https://trello.com/power-ups/admin/
+```
 
-- _Exemplo_:
-  - Lógica de programação
-  - Javascript
+Nesse portal, criei um novo Power-Up para poder gerar as credenciais necessárias para acessar a API do Trello.
 
-## 🛠️ Habilidades e Sub-habilidades que vamos aprender neste conteúdo
+### 2. Obtenção da API Key
 
-- [Lista das habilidades principais a serem desenvolvidas]
+Após criar o Power-Up, acessei a área de gerenciamento do aplicativo e copiei a API Key gerada pelo Trello.
 
-  - [Subhabilidades relacionadas, se aplicável]
+Essa chave é necessária para identificar a aplicação nas requisições feitas para a API.
 
-- _Exemplo_:
-  - Java
-    - Api Rest
+### 3. Geração do Token de Acesso
 
-## 🎯 Objetivos e Resultados Esperados
+Com a API Key em mãos, utilizei a URL de autorização do Trello para gerar um Token de acesso:
 
-Após a conclusão do curso/projeto, os estudantes estarão aptos a:
+```text
+https://trello.com/1/authorize?expiration=never&name=AppDio&scope=read,write&response_type=token&key=SUA_API_KEY_AQUI
+```
 
-- [Descrição do que os estudantes serão capazes de fazer]
-- [Projetos ou soluções que os estudantes estarão aptos a construir]
+Depois de acessar o link, autorizei o aplicativo e copiei o token gerado.
 
-<!--START_SECTION:footer-->
+### 4. Configuração do Arquivo `.env`
 
-<br />
-<br />
+Para manter as credenciais protegidas, criei um arquivo `.env` com as seguintes variáveis:
 
-<p align="center">
-  <a href="https://www.dio.me/" target="_blank">
-    <img align="center" src="https://raw.githubusercontent.com/digitalinnovationone/template-github-trilha/main/.github/assets/footer.png" alt="banner"/>
-  </a>
-</p>
+```env
+TRELLO_API_KEY=sua_api_key
+TRELLO_API_SECRET=seu_api_secret
+TRELLO_TOKEN=seu_token
+TRELLO_BOARD_ID=id_do_board
+```
+
+O arquivo `.env` não deve ser enviado para o GitHub, pois contém dados sensíveis como chave da API e token de acesso.
+
+### 5. Configuração do `.gitignore`
+
+Para evitar o envio de informações sensíveis para o GitHub, adicionei o arquivo `.env` ao `.gitignore`.
+
+Exemplo:
+
+```text
+.env
+```
+
+Dessa forma, as credenciais ficam protegidas localmente no computador.
+
+### 6. Instalação das Dependências
+
+As principais bibliotecas utilizadas no projeto foram:
+
+```bash
+pip install py-trello python-dotenv
+```
+
+A biblioteca `py-trello` permite a comunicação com a API do Trello, enquanto a `python-dotenv` permite carregar as variáveis salvas no arquivo `.env`.
+
+### 7. Integração com Python
+
+No código Python, utilizei a biblioteca `py-trello` para conectar com minha conta do Trello, acessar o board e manipular listas e cards.
+
+Exemplo básico de conexão:
+
+```python
+from trello import TrelloClient
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+client = TrelloClient(
+    api_key=os.getenv("TRELLO_API_KEY"),
+    api_secret=os.getenv("TRELLO_API_SECRET"),
+    token=os.getenv("TRELLO_TOKEN")
+)
+```
+
+### 8. Uso do Board ID
+
+Para acessar um quadro específico do Trello, utilizei o ID do board salvo no arquivo `.env`.
+
+Exemplo:
+
+```python
+BOARD_ID = os.getenv("TRELLO_BOARD_ID")
+meu_board = client.get_board(BOARD_ID)
+```
+
+Isso evita depender apenas do nome do quadro, deixando a integração mais segura e organizada.
+
+## Funcionalidades Desenvolvidas
+
+Durante o desenvolvimento, foram trabalhadas funções para:
+
+- Criar tarefas no Trello;
+- Listar tarefas existentes;
+- Consultar listas do board;
+- Mudar o status de uma tarefa entre listas;
+- Utilizar variáveis de ambiente para proteger credenciais.
+
+## Exemplo de Criação de Card
+
+Um exemplo simples de criação de card no Trello:
+
+```python
+listas = meu_board.list_lists()
+
+lista_tarefas = [l for l in listas if l.name.upper() == "A FAZER" or l.name.upper() == "TO DO"][0]
+
+lista_tarefas.add_card(
+    name="Estudar API",
+    desc="Revisar conceitos de GET, POST e JSON"
+)
+```
+
+Esse exemplo cria um card em uma lista chamada `A Fazer` ou `To Do`.
+
+## Cuidados com Segurança
+
+Durante o projeto, alguns cuidados importantes foram considerados:
+
+- Não expor API Key ou Token no GitHub;
+- Utilizar arquivo `.env` para armazenar credenciais;
+- Adicionar `.env` ao `.gitignore`;
+- Nunca compartilhar prints contendo tokens ou chaves de API;
+- Usar variáveis de ambiente no código.
+
+## Dificuldades Encontradas
+
+Durante o desenvolvimento, encontrei algumas dificuldades comuns em integrações com APIs, como:
+
+- Entender a diferença entre API Key e Token;
+- Descobrir o ID correto do board;
+- Trabalhar com listas e cards no Trello;
+- Corrigir erros de data inválida ao criar cards;
+- Entender melhor o uso de variáveis de ambiente.
+
+Essas dificuldades ajudaram no aprendizado, principalmente sobre integração entre sistemas e segurança de credenciais.
+
+## Aprendizados
+
+Com este desafio, aprendi melhor como funciona a autenticação com a API do Trello, como usar variáveis de ambiente em Python e como estruturar uma integração simples entre uma aplicação Python e uma ferramenta externa.
+
+Também entendi a importância de organizar bem o README, pois ele ajuda outras pessoas a compreenderem o objetivo, as tecnologias e o funcionamento do projeto.
+
+## Conclusão
+
+Este desafio foi importante para praticar conceitos de API, autenticação, automação e integração com ferramentas externas.
+
+A integração com o Trello mostrou como é possível usar Python para automatizar tarefas do dia a dia, como criar cards, listar tarefas e organizar informações em um board.
+
+## Autor
+
+Carlos Eduardo
+
+Projeto desenvolvido como parte do desafio da DIO.
